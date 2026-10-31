@@ -74,9 +74,11 @@ struct HolidayPot: Identifiable, Codable {
         return max(0, days)
     }
     
+    /// Amount to save each day to reach the target by the trip date.
+    /// Uses remainingAmount so an already funded pot returns 0, not a negative number.
     var estimatedDailyNeeded: Double {
         guard daysUntilTrip > 0 else { return 0 }
-        return (targetAmount - currentAmount) / Double(daysUntilTrip)
+        return remainingAmount / Double(daysUntilTrip)
     }
     
     var remainingAmount: Double {
