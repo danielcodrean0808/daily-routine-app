@@ -159,9 +159,13 @@ struct TargetGoal: Identifiable, Codable {
         return max(0, days)
     }
     
+    /// Amount to save each month to reach the target by the target date.
+    /// With less than a month left the whole remaining amount is due, so the
+    /// period is never treated as shorter than one month (otherwise 15 days
+    /// left would ask for double the remaining amount per month).
     var monthlyRequiredSavings: Double {
         guard daysRemaining > 0 else { return 0 }
-        let months = Double(daysRemaining) / 30.0
+        let months = max(1.0, Double(daysRemaining) / 30.0)
         return remainingAmount / months
     }
     
