@@ -97,7 +97,7 @@ struct GoalsView: View {
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button(action: { showAddGoal = true }) {
-                        Image(systemImage: "plus.circle.fill")
+                        Image(systemName: "plus.circle.fill")
                     }
                 }
             }
